@@ -76,3 +76,98 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+public boolean isValidInput(String input) {
+    return input != null && input.matches("[a-zA-Z0-9]+");
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
+public class AESExample {
+    public static byte[] encrypt(String plainText, SecretKey secretKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        return cipher.doFinal(plainText.getBytes());
+    }
+
+    public static String decrypt(byte[] cipherText, SecretKey secretKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        byte[] decryptedText = cipher.doFinal(cipherText);
+        return new String(decryptedText);
+    }
+}
+3. Biometric Authentication
+
+import androidx.biometric.BiometricPrompt;
+import androidx.fragment.app.FragmentActivity;
+import java.util.concurrent.Executor;
+
+public class BiometricAuth {
+    public void authenticate(FragmentActivity activity) {
+        Executor executor = ContextCompat.getMainExecutor(activity);
+        BiometricPrompt biometricPrompt = new BiometricPrompt(activity, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                // Handle successful authentication
+            }
+        });
+
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Biometric Authentication")
+                .setSubtitle("Authenticate to access your data")
+                .setNegativeButtonText("Cancel")
+                .build();
+
+        biometricPrompt.authenticate(promptInfo);
+    }
+}public void resetPassword(String email) {
+    // Generate a secure token
+    String token = generateSecureToken();
+    // Send token to the user's email
+    sendEmailWithToken(email, token);
+    // Store token in a secure manner
+    storeTokenSecurely(email, token);
+}func isValidInput(_ input: String) -> Bool {
+    return input.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) == nil
+}import CryptoKit
+
+func encrypt(plainText: String, key: SymmetricKey) -> Data? {
+    guard let data = plainText.data(using: .utf8) else { return nil }
+    let sealedBox = try! AES.GCM.seal(data, using: key)
+    return sealedBox.combined
+}
+
+func decrypt(cipherText: Data, key: SymmetricKey) -> String? {
+    let sealedBox = try! AES.GCM.SealedBox(combined: cipherText)
+    let decryptedData = try! AES.GCM.open(sealedBox, using: key)
+    return String(data: decryptedData, encoding: .utf8)
+}import LocalAuthentication
+
+func authenticateWithBiometrics() {
+    let context = LAContext()
+    var error: NSError?
+
+    if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+        let reason = "Authenticate to access your data"
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+            DispatchQueue.main.async {
+                if success {
+                    // Handle successful authentication
+                } else {
+                    // Handle error
+                }
+            }
+        }
+    }
+}func resetPassword(email: String) {
+    // Generate a secure token
+    let token = generateSecureToken()
+    // Send token to the user's email
+    sendEmailWithToken(email, token)
+    // Store token in a secure manner
+    storeTokenSecurely(email, token)
+}
+
+
+
