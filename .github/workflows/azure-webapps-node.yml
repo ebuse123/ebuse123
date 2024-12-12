@@ -1,5 +1,21 @@
 # This workflow will build and push a node.js application to an Azure Web App when a commit is pushed to your default branch.
-#
+# Advanced Security Initialize CodeQL v1
+# Initializes the CodeQL database in preparation for building.
+- task: AdvancedSecurity-Codeql-Init@1
+  inputs:
+    #enableAutomaticCodeQLInstall: false # boolean. Enable automatic CodeQL detection and installation. Default: false.
+    #languages: # 'csharp' | 'cpp' | 'go' | 'java' | 'javascript' | 'python' | 'ruby' | 'swift'. Languages to analyze. 
+    #querysuite: 'Select a query suite...' # 'Select a query suite...' | 'code-scanning' | 'security-extended' | 'security-experimental' | 'security-and-quality'. CodeQL Query Suite to use for analysis. Default: Select a query suite....
+    #buildtype: 'Manual' # 'Manual' | 'None'. Select build mode (manual vs none). Default: Manual.
+  # Advanced
+    #ram: # string. Options to control RAM usage in MB. 
+    #threads: # string. Use this many threads to evaluate queries. 
+    #codeqlpathstoignore: # string. Set a list of paths to exclude in the CodeQL analysis. 
+    #codeqlpathstoinclude: # string. Set a list of additional paths to include in the CodeQL analysis. 
+    #sourcesfolder: # string. Sets the folder that contains the sources to be analyzed. 
+    #loglevel: '_' # '0' | '1' | '2' | '_'. Set the log level for the CodeQL analysis. Default: _.
+    #configfilepath: # string. Use this to enable custom query analysis in codeql (path must be absolute). 
+    #codeqltoolsdirectory: # string. Set a custom CodeQL tools directory (path must be absolute).
 # This workflow assumes you have already created the target Azure App Service web app.
 # For instructions see https://docs.microsoft.com/en-us/azure/app-service/quickstart-nodejs?tabs=linux&pivots=development-environment-cli
 #
